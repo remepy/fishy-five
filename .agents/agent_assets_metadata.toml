@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "PIDw5wtMYDz7vnyEt5CNE"
+uri = "file://artifacts/wheres-fishy/assets/images/icon.png"
+type = "image"
+title = "wheres_fishy_icon"

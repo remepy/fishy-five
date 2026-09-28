@@ -1,0 +1,3 @@
+- [Static WebView localization](static-webview-localization.md) — Flutter owns locale selection; preserve S3 object URLs and spatial directions.
+- [Expo web export payload traps](expo-web-export-payload.md) — barrel font/icon imports ship every variant; flatten alpha against a known backdrop and compare composites, not sources.
+- [Cyan bridge e2e testing](cyan-bridge-testing.md) — fake host via addInitScript, sync replies are valid, hint→wait→tap guidance for testers.
