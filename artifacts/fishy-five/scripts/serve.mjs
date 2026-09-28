@@ -202,8 +202,31 @@ const server = createServer(async (req, res) => {
   res.end(body);
 });
 
-server.listen(port, () => {
+server.on("error", (error) => {
+  if (error.code === "EADDRINUSE") {
+    // Every game's QA server defaults to the same port, so this usually means
+    // another one is still running rather than anything being wrong here.
+    console.error(
+      `\n  Port ${port} is already in use — another QA server is probably still` +
+        `\n  running. Either stop it, or start this one on another port:\n` +
+        `\n    node scripts/serve.mjs ${port + 1}\n`,
+    );
+    process.exit(1);
+  }
+  throw error;
+});
+
+server.listen(port, async () => {
   console.log(`\n  ${GAME_ID} QA server\n`);
+  try {
+    await stat(path.join(root, LANGUAGES[0].lang, "index.html"));
+  } catch {
+    console.log(
+      `  No build found in ${path.relative(process.cwd(), root)}.\n` +
+        `  Run this first, then reload:\n\n` +
+        `    pnpm --filter @workspace/${GAME_ID} build:languages\n`,
+    );
+  }
   console.log(`  http://localhost:${port}/`);
   for (const { lang } of LANGUAGES) {
     console.log(`  http://localhost:${port}${prefix}${lang}/index.html`);
