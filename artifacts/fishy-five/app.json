@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Fishy Five",
+    "slug": "fishy-five",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "fishyfive",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#023e8a"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.fishy5.app"
+    },
+    "android": {
+      "package": "com.fishy5.app"
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [],
+    "experiments": {
+      "reactCompiler": true
+    }
+  }
+}
