@@ -89,7 +89,7 @@ information (where the hint is pointing).
 ## Building and hosting
 
 ```
-pnpm --filter @workspace/fishy-five build:languages
+npm run build:languages --workspace @workspace/fishy-five
 ```
 
 Produces `dist/languages/{he,en}/`, each exported with its own base URL

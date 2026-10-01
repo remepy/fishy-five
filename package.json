@@ -2,10 +2,11 @@
   "name": "workspace",
   "version": "0.0.0",
   "license": "MIT",
+  "workspaces": ["artifacts/*"],
   "scripts": {
-    "build": "pnpm run typecheck && pnpm -r --if-present run build:languages",
-    "test": "pnpm -r --if-present run test",
-    "typecheck": "pnpm -r --filter \"./artifacts/**\" --if-present run typecheck"
+    "build": "npm run typecheck && npm run build:languages --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "private": true,
   "devDependencies": {

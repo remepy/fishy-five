@@ -172,7 +172,7 @@ const server = createServer(async (req, res) => {
   } catch {
     res.writeHead(404, { "Content-Type": "text/plain" });
     res.end(
-      `Not found: ${rest}\n\nBuild first:\n  pnpm --filter @workspace/${GAME_ID} build:languages\n`,
+      `Not found: ${rest}\n\nBuild first:\n  npm run build:languages --workspace @workspace/${GAME_ID}\n`,
     );
     return;
   }
@@ -224,7 +224,7 @@ server.listen(port, async () => {
     console.log(
       `  No build found in ${path.relative(process.cwd(), root)}.\n` +
         `  Run this first, then reload:\n\n` +
-        `    pnpm --filter @workspace/${GAME_ID} build:languages\n`,
+        `    npm run build:languages --workspace @workspace/${GAME_ID}\n`,
     );
   }
   console.log(`  http://localhost:${port}/`);

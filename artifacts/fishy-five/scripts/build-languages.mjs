@@ -12,18 +12,18 @@ import { GAME_ID, LANGUAGES } from "./game.mjs";
  * at build time; the game never reads it from the URL.
  */
 const root = path.resolve(import.meta.dirname, "..");
-const outRoot = path.join(root, "dist", "languages");
+const outRoot = path.join(root, "dist", "fishy-five");
 
 await rm(outRoot, { recursive: true, force: true });
 
 for (const { lang, locale, dir } of LANGUAGES) {
-  const base = `/games/${GAME_ID}/${lang}/`;
+  const base = `./`;
   const output = path.join(outRoot, lang);
   await mkdir(output, { recursive: true });
 
   const result = spawnSync(
-    "pnpm",
-    ["exec", "expo", "export", "--platform", "web", "--output-dir", output, "--clear"],
+    "npm",
+    ["exec", "--no", "--", "expo", "export", "--platform", "web", "--output-dir", output, "--clear"],
     {
       cwd: root,
       env: { ...process.env, EXPO_BASE_URL: base, EXPO_PUBLIC_GAME_LANGUAGE: lang },

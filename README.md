@@ -28,10 +28,14 @@ artifacts/fishy-five/
 ## Working on it
 
 ```
-pnpm install
-pnpm run typecheck
-EXPO_PUBLIC_GAME_LANGUAGE=he pnpm --filter @workspace/fishy-five dev
+npm install --before="$(node -p 'new Date(Date.now() - 86400000).toISOString()')"
+npm run typecheck
+EXPO_PUBLIC_GAME_LANGUAGE=he npm run dev --workspace @workspace/fishy-five
 ```
+
+The install command excludes releases less than 24 hours old. Use `npm ci`
+for repeatable installs from the root `package-lock.json`. Dependency lifecycle
+scripts are disabled in `.npmrc`.
 
 There is no bridge in dev, so the game runs standalone: four levels from a
 random start, no messages posted.
@@ -39,7 +43,7 @@ random start, no messages posted.
 ## Building for S3
 
 ```
-pnpm --filter @workspace/fishy-five build:languages
+npm run build:languages --workspace @workspace/fishy-five
 ```
 
 Writes `dist/languages/he/` and `dist/languages/en/`. Each is a complete,
@@ -50,8 +54,8 @@ its own language prefix. Upload the contents of each to
 ## QA: running a build locally
 
 ```
-pnpm --filter @workspace/fishy-five build:languages
-pnpm --filter @workspace/fishy-five serve
+npm run build:languages --workspace @workspace/fishy-five
+npm run serve --workspace @workspace/fishy-five
 ```
 
 Then open http://localhost:4173/ for a menu, or go straight to a build:
